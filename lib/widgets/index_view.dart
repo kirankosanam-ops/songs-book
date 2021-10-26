@@ -6,7 +6,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:songs_book/constants.dart';
 import 'package:songs_book/controller/song_index.dart';
-import 'package:songs_book/widgets/search_box.dart';
 import 'package:sqflite/sqflite.dart';
 
 import 'lyric_tile.dart';
@@ -71,16 +70,59 @@ class _IndexViewState extends State<IndexView> {
         await db.rawQuery('SELECT ' + widget.songsType + ' from SongBook');
 
     // print(songLyrics);
-    for (int i = 0; i < songsIndex.length; i++) {
-      if (songsIndex[i][widget.songsType] != 'THE END') {
-        lyricIndex.add(LyricTile(
-          number: songsIndex[i]['Number'],
-          songName: songsIndex[i][widget.songsType],
-          songLyric: songLyrics[i][widget.songsType] + '\n\n\n',
-        ));
-      } else {
-        break;
+    setState(() {
+      lyricIndex = [];
+      for (int i = 0; i < songsIndex.length; i++) {
+        if (songsIndex[i][widget.songsType] != 'THE END') {
+          lyricIndex.add(LyricTile(
+            number: songsIndex[i]['Number'],
+            songName: songsIndex[i][widget.songsType],
+            songLyric: songLyrics[i][widget.songsType] + '\n\n\n',
+          ));
+        } else {
+          break;
+        }
       }
+    });
+  }
+
+  void getSearchedSongIndex(int searchNumber, String keyword) async {
+    if (searchNumber <= 0 && keyword == '') {
+    } else if (searchNumber >= 0 && keyword == '') {
+      // Searching through number
+      String queryIndex = "SELECT " +
+          widget.songsType +
+          ", Number FROM Table_indexx WHERE Number LIKE '${searchNumber.toString()}%'";
+      String queryLyric = "SELECT " +
+          widget.songsType +
+          " FROM SongBook WHERE Number LIKE '${searchNumber.toString()}%'";
+      print(queryIndex);
+      print(queryLyric);
+      // List<Map> res = await db.rawQuery("SELECT " +
+      //     widget.songsType +
+      //     " FROM SongBook WHERE Number LIKE '%${searchNumber.toString()}%'");
+      // print('first' + res.toString());
+      final List<Map<String, dynamic>> songsIndex =
+          await db.rawQuery(queryIndex);
+      final List<Map<String, dynamic>> songLyrics =
+          await db.rawQuery(queryLyric);
+
+      // print(songLyrics);
+      setState(() {
+        lyricIndex = [];
+        for (int i = 0; i < songsIndex.length; i++) {
+          if (songsIndex[i][widget.songsType] != 'THE END') {
+            lyricIndex.add(LyricTile(
+              number: songsIndex[i]['Number'],
+              songName: songsIndex[i][widget.songsType],
+              songLyric: songLyrics[i][widget.songsType] + '\n\n\n',
+            ));
+          } else {
+            break;
+          }
+        }
+      });
+
     }
   }
 
@@ -109,8 +151,51 @@ class _IndexViewState extends State<IndexView> {
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 10.0),
               alignment: Alignment.centerLeft,
-              child: SearchBox(
-                screenSize: widget.screenSize,
+              child: Row(
+                children: [
+                  const Icon(
+                    Icons.search,
+                    color: Colors.deepPurple,
+                  ),
+                  SizedBox(
+                    width: widget.screenSize.width * 0.72,
+                    child: TextFormField(
+                      onChanged: (value) {
+                        print(value);
+                        setState(() {
+                          if (value == '') {
+                            setState(() {
+                              getSongIndex();
+                            });
+                          } else {
+                            getSearchedSongIndex(int.parse(value), '');
+                          }
+                        });
+                      },
+                      cursorColor: Colors.black,
+                      keyboardType: TextInputType.text,
+                      textInputAction: TextInputAction.search,
+                      decoration: const InputDecoration(
+                          border: InputBorder.none,
+                          focusedBorder: InputBorder.none,
+                          enabledBorder: InputBorder.none,
+                          errorBorder: InputBorder.none,
+                          disabledBorder: InputBorder.none,
+                          contentPadding:
+                              EdgeInsets.symmetric(horizontal: 15.0),
+                          hintText: "Search for Song or Number"),
+                    ),
+                  ),
+                  // InkWell(
+                  //   onTap: () {
+                  //     print("Search");
+                  //   },
+                  //   child: const Icon(
+                  //     Icons.arrow_right_alt_rounded,
+                  //     color: Colors.purpleAccent,
+                  //   ),
+                  // )
+                ],
               ),
               width: widget.screenSize.width * 0.9,
               height: 55.0,

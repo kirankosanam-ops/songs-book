@@ -73,7 +73,7 @@ class _LyricsViewState extends State<LyricsView> {
                     widget.songNumber + '. ' + widget.lyricsName,
                     textAlign: TextAlign.center,
                     style: const TextStyle(
-                      color: Colors.purpleAccent,
+                      color: Colors.deepPurple,
                       fontFamily: 'ZenAntiqueSoft',
                       fontSize: 24.0,
                     ),

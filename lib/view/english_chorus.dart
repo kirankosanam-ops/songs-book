@@ -12,9 +12,7 @@ class EnglishChorus extends StatelessWidget {
       backgroundColor: Colors.transparent,
       body: Stack(children: [
         const BackgroundGradient(isLyrics:false),
-        SafeArea(
-          child: IndexView(screenSize: screenSize, songsType: 'Eng_Chrous_Name',),
-        ),
+        IndexView(screenSize: screenSize, songsType: 'Eng_Chrous_Name',),
       ]),
     );
   }

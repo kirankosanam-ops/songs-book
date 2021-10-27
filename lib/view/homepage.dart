@@ -26,83 +26,81 @@ class _HomePageState extends State<HomePage> {
       backgroundColor: Colors.transparent,
       body: Stack(children: [
         const BackgroundGradient(isLyrics:false),
-        SafeArea(
-          child: Column(
-            children: [
-              SizedBox(
-                width: screenSize.width,
-                height: screenSize.height * 0.55,
-                child: const Center(
-                  child: Image(
-                    image: AssetImage('images/songs_book.png'),
-                    fit: BoxFit.cover,
-                  ),
+        Column(
+          children: [
+            SizedBox(
+              width: screenSize.width,
+              height: screenSize.height * 0.55,
+              child: const Center(
+                child: Image(
+                  image: AssetImage('images/songs_book.png'),
+                  fit: BoxFit.cover,
                 ),
               ),
-              SizedBox(
-                height: screenSize.width * 0.15,
-              ),
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  children: [
-                    SizedBox(
-                      width: screenSize.width * 0.05,
-                    ),
-                    SongLanguageButton(
+            ),
+            SizedBox(
+              height: screenSize.width * 0.15,
+            ),
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: [
+                  SizedBox(
+                    width: screenSize.width * 0.05,
+                  ),
+                  SongLanguageButton(
+                    screenSize: screenSize,
+                    language: 'English Hymns',
+                    fontFamily: 'GreatVibes',
+                    fontSize: 40.0,
+                    pageName: '/english_hymns',
+                  ),
+                  SizedBox(
+                    width: screenSize.width * 0.08,
+                  ),
+                  SongLanguageButton(
                       screenSize: screenSize,
-                      language: 'English Hymns',
+                      language: 'English Chorus',
                       fontFamily: 'GreatVibes',
                       fontSize: 40.0,
-                      pageName: '/english_hymns',
-                    ),
-                    SizedBox(
-                      width: screenSize.width * 0.08,
-                    ),
-                    SongLanguageButton(
-                        screenSize: screenSize,
-                        language: 'English Chorus',
-                        fontFamily: 'GreatVibes',
-                        fontSize: 40.0,
-                        pageName: '/english_chorus'),
-                    SizedBox(
-                      width: screenSize.width * 0.08,
-                    ),
-                    SongLanguageButton(
-                      screenSize: screenSize,
-                      language: 'తెలుగులోకి అనువాదం\nచెయ్యబడిన పాటలు ',
-                      fontFamily: 'Suvarnamu',
-                      fontSize: 30.0,
-                      pageName: '/telugu_hymns',
-                    ),
-                    SizedBox(
-                      width: screenSize.width * 0.08,
-                    ),
-                    SongLanguageButton(
-                      screenSize: screenSize,
-                      language: 'పల్లవులు',
-                      fontFamily: 'Suvarnamu',
-                      fontSize: 40.0,
-                      pageName: '/telugu_chorus',
-                    ),
-                    SizedBox(
-                      width: screenSize.width * 0.08,
-                    ),
-                    SongLanguageButton(
-                      screenSize: screenSize,
-                      language: 'కీర్తనలు',
-                      fontFamily: 'Suvarnamu',
-                      fontSize: 40.0,
-                      pageName: '/telugu_songs',
-                    ),
-                    SizedBox(
-                      width: screenSize.width * 0.08,
-                    ),
-                  ],
-                ),
-              )
-            ],
-          ),
+                      pageName: '/english_chorus'),
+                  SizedBox(
+                    width: screenSize.width * 0.08,
+                  ),
+                  SongLanguageButton(
+                    screenSize: screenSize,
+                    language: 'తెలుగులోకి అనువాదం\nచెయ్యబడిన పాటలు ',
+                    fontFamily: 'Suvarnamu',
+                    fontSize: 30.0,
+                    pageName: '/telugu_hymns',
+                  ),
+                  SizedBox(
+                    width: screenSize.width * 0.08,
+                  ),
+                  SongLanguageButton(
+                    screenSize: screenSize,
+                    language: 'పల్లవులు',
+                    fontFamily: 'Suvarnamu',
+                    fontSize: 40.0,
+                    pageName: '/telugu_chorus',
+                  ),
+                  SizedBox(
+                    width: screenSize.width * 0.08,
+                  ),
+                  SongLanguageButton(
+                    screenSize: screenSize,
+                    language: 'కీర్తనలు',
+                    fontFamily: 'Suvarnamu',
+                    fontSize: 40.0,
+                    pageName: '/telugu_songs',
+                  ),
+                  SizedBox(
+                    width: screenSize.width * 0.08,
+                  ),
+                ],
+              ),
+            )
+          ],
         ),
       ]),
     );

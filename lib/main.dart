@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:songs_book/view/english_chorus.dart';
 import 'package:songs_book/view/english_hymns.dart';
 import 'package:songs_book/view/homepage.dart';
@@ -15,21 +16,22 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky, overlays: []);
+
+
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Songs Book',
       initialRoute: '/',
       routes: {
-        '/': (context) => const HomePage(),
-        '/english_hymns': (context) => const EnglishHymns(),
+        '/': (context) =>  const HomePage(),
+        '/english_hymns': (context) =>  const EnglishHymns(),
         '/english_chorus': (context) => const EnglishChorus(),
         '/telugu_hymns': (context) => const TeluguHymns(),
         '/telugu_chorus': (context) => const TeluguChorus(),
         '/telugu_songs': (context) => const TeluguSongs(),
         // '/songs_list': (context) => SongsList(),
       },
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+
     );
   }
 }

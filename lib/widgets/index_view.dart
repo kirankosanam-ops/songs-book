@@ -5,7 +5,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:songs_book/constants.dart';
-import 'package:songs_book/controller/song_index.dart';
 import 'package:sqflite/sqflite.dart';
 
 import 'lyric_tile.dart';
@@ -88,7 +87,7 @@ class _IndexViewState extends State<IndexView> {
 
   void getSearchedSongIndex(int searchNumber, String keyword) async {
     if (searchNumber <= 0 && keyword == '') {
-    } else if (searchNumber >= 0 && keyword == '') {
+    } else if (searchNumber > 0 && keyword == '') {
       // Searching through number
       String queryIndex = "SELECT " +
           widget.songsType +
@@ -106,6 +105,7 @@ class _IndexViewState extends State<IndexView> {
           await db.rawQuery(queryIndex);
       final List<Map<String, dynamic>> songLyrics =
           await db.rawQuery(queryLyric);
+      print(songsIndex);
 
       // print(songLyrics);
       setState(() {
@@ -115,14 +115,49 @@ class _IndexViewState extends State<IndexView> {
             lyricIndex.add(LyricTile(
               number: songsIndex[i]['Number'],
               songName: songsIndex[i][widget.songsType],
-              songLyric: songLyrics[i][widget.songsType] + '\n\n\n',
+              songLyric: songLyrics[i][widget.songsType] + '\n\n\n\n\n',
             ));
           } else {
             break;
           }
         }
       });
+    } else if (searchNumber <= 0 && keyword != '') {
 
+      String queryIndex = "SELECT " +
+          widget.songsType +
+          ", Number FROM Table_indexx WHERE " +
+          widget.songsType +
+          " LIKE '%${keyword}%'";
+      String queryLyric = "SELECT " +
+          widget.songsType +
+          " FROM SongBook WHERE " +
+          widget.songsType +
+          " LIKE '%${keyword}%'";
+      final List<Map<String, dynamic>> songsIndex =
+          await db.rawQuery(queryIndex);
+      final List<Map<String, dynamic>> songLyrics =
+          await db.rawQuery(queryLyric);
+
+      // print(songLyrics);
+      setState(() {
+        lyricIndex = [];
+        int le = (songsIndex.length < songLyrics.length)
+            ? songsIndex.length
+            : songLyrics.length;
+        print(le);
+        for (int i = 0; i < le; i++) {
+          if (songsIndex[i][widget.songsType] != 'THE END') {
+            lyricIndex.add(LyricTile(
+              number: songsIndex[i]['Number'],
+              songName: songsIndex[i][widget.songsType],
+              songLyric: songLyrics[i][widget.songsType] + '\n\n\n\n\n',
+            ));
+          } else {
+            break;
+          }
+        }
+      });
     }
   }
 
@@ -133,6 +168,13 @@ class _IndexViewState extends State<IndexView> {
       (value) => setState(() => {getSongIndex()}),
     );
     super.initState();
+  }
+
+  bool isNumeric(String s) {
+    if (s == null) {
+      return false;
+    }
+    return double.tryParse(s) != null;
   }
 
   @override
@@ -167,8 +209,10 @@ class _IndexViewState extends State<IndexView> {
                             setState(() {
                               getSongIndex();
                             });
-                          } else {
+                          } else if (isNumeric(value)) {
                             getSearchedSongIndex(int.parse(value), '');
+                          } else if (!isNumeric(value)) {
+                            getSearchedSongIndex(0, value);
                           }
                         });
                       },

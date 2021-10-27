@@ -6,6 +6,7 @@ import 'package:songs_book/widgets/lyric_tile.dart';
 class EnglishHymns extends StatelessWidget {
   const EnglishHymns({Key? key}) : super(key: key);
 
+
   @override
   Widget build(BuildContext context) {
     var screenSize = MediaQuery.of(context).size;
@@ -13,9 +14,7 @@ class EnglishHymns extends StatelessWidget {
       backgroundColor: Colors.transparent,
       body: Stack(children: [
         const BackgroundGradient(isLyrics:false),
-        SafeArea(
-          child: IndexView(screenSize: screenSize, songsType: 'Eng_Song_Name',),
-        ),
+        IndexView(screenSize: screenSize, songsType: 'Eng_Song_Name',),
       ]),
     );
   }

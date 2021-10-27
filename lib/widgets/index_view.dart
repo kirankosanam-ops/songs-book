@@ -183,12 +183,13 @@ class _IndexViewState extends State<IndexView> {
       scrollDirection: Axis.vertical,
       child: Padding(
         padding:
-            EdgeInsets.symmetric(horizontal: widget.screenSize.width * 0.05),
+            EdgeInsets.symmetric(horizontal: widget.screenSize.width * 0.02),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const SizedBox(
-              height: 30.0,
+              height: 50.0,
             ),
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 10.0),
@@ -230,18 +231,9 @@ class _IndexViewState extends State<IndexView> {
                           hintText: "Search for Song or Number"),
                     ),
                   ),
-                  // InkWell(
-                  //   onTap: () {
-                  //     print("Search");
-                  //   },
-                  //   child: const Icon(
-                  //     Icons.arrow_right_alt_rounded,
-                  //     color: Colors.purpleAccent,
-                  //   ),
-                  // )
                 ],
               ),
-              width: widget.screenSize.width * 0.9,
+              width: widget.screenSize.width * 0.96,
               height: 55.0,
               decoration: const BoxDecoration(
                 color: Colors.white60,

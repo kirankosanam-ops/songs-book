@@ -1,12 +1,15 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- Modify this file to customize your launch splash screen -->
-<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:drawable="@android:color/white" />
+import 'dart:io';
+import 'dart:typed_data';
+import 'package:path/path.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:songs_book/constants.dart';
+import 'package:songs_book/widgets/search_box.dart';
+import 'package:sqflite/sqflite.dart';
 
-    <!-- You can insert your own image assets here -->
-    <!-- <item>
-        <bitmap
-            android:gravity="center"
-            android:src="@mipmap/launch_image" />
-    </item> -->
-</layer-list>
+import 'lyric_tile.dart';
+
+class IndexView extends StatefulWidget {
+  const IndexView({
+    Key?

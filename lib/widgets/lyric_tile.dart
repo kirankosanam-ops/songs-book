@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:songs_book/view/lyrics_view.dart';
 
 class LyricTile extends StatelessWidget {
@@ -19,8 +20,9 @@ class LyricTile extends StatelessWidget {
     return Column(
       children: [
         Container(
-          width: screenSize.width * 0.9,
-          height: screenSize.height * 0.10,
+          constraints: const BoxConstraints(minHeight: 70.0),
+          width: screenSize.width * 0.96,
+          height: 70.0,
           padding: const EdgeInsets.symmetric(horizontal: 10.0),
           decoration: const BoxDecoration(
             boxShadow: [
@@ -66,13 +68,21 @@ class LyricTile extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(
-                  width: screenSize.width * 0.65,
-                  child: Text(
-                    songName.toString(),
-                    style: const TextStyle(color: Colors.white, fontSize: 20.0),
+                Expanded(
+                  child: SizedBox(
+                    width: screenSize.width * 0.72,
+                    child: Text(
+                      songName.toString(),
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 22.0,
+                          fontFamily:
+                              songName.toString()[0].contains(RegExp(r'[A-Z]'))
+                                  ? 'ZenAntiqueSoft'
+                                  : 'Suvarnamu'),
+                    ),
                   ),
-                )
+                ),
               ],
             ),
           ),

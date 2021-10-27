@@ -13,7 +13,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-
   @override
   void initState() {
     super.initState();
@@ -25,8 +24,9 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       backgroundColor: Colors.transparent,
       body: Stack(children: [
-        const BackgroundGradient(isLyrics:false),
+        const BackgroundGradient(isLyrics: false),
         Column(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             SizedBox(
               width: screenSize.width,
@@ -38,9 +38,6 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
             ),
-            SizedBox(
-              height: screenSize.width * 0.15,
-            ),
             SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: Row(
@@ -51,17 +48,17 @@ class _HomePageState extends State<HomePage> {
                   SongLanguageButton(
                     screenSize: screenSize,
                     language: 'English Hymns',
-                    fontFamily: 'GreatVibes',
+                    fontFamily: 'AlexBrush',
                     fontSize: 40.0,
                     pageName: '/english_hymns',
                   ),
-                  SizedBox(
-                    width: screenSize.width * 0.08,
+                  const SizedBox(
+                    width: 20.0,
                   ),
                   SongLanguageButton(
                       screenSize: screenSize,
                       language: 'English Chorus',
-                      fontFamily: 'GreatVibes',
+                      fontFamily: 'AlexBrush',
                       fontSize: 40.0,
                       pageName: '/english_chorus'),
                   SizedBox(

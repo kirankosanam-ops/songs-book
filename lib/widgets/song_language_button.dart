@@ -27,7 +27,10 @@ class SongLanguageButton extends StatelessWidget {
             : true);
       },
       child: Container(
-        width: screenSize.width * 0.75,
+        constraints: const BoxConstraints(
+          minHeight: 180.0
+        ),
+        width: screenSize.width * 0.8,
         height: screenSize.height * 0.20,
         decoration: BoxDecoration(
           color: const Color(0xFF7AABD1),
@@ -41,7 +44,7 @@ class SongLanguageButton extends StatelessWidget {
           boxShadow: [
             BoxShadow(
               color: const Color(0xff1C1E30).withOpacity(0.5),
-              spreadRadius: 3,
+              spreadRadius: 5,
               blurRadius: 7,
               offset: const Offset(0, 3), // changes position of shadow
             ),

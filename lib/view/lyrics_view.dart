@@ -177,7 +177,7 @@ class _LyricsViewState extends State<LyricsView> {
         });
   }
   double _scaleFactor = 1.0;
-  double _baseScaleFactor = 1.0;
+  double _baseScaleFactor = 0.4;
 
   @override
   void dispose() {
@@ -214,7 +214,7 @@ class _LyricsViewState extends State<LyricsView> {
               padding: const EdgeInsets.only(
                   left: 10.0, right: 10.0, top: 1.0, bottom: 10.0),
               child: GestureDetector(
-                onTap: () {
+                onDoubleTap: () {
                   setState(() {
                     _modalBottomSheetMenu(
                         widget.songNumber + '. ' + widget.lyricsName,

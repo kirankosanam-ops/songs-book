@@ -123,7 +123,6 @@ class _IndexViewState extends State<IndexView> {
         }
       });
     } else if (searchNumber <= 0 && keyword != '') {
-
       String queryIndex = "SELECT " +
           widget.songsType +
           ", Number FROM Table_indexx WHERE " +
@@ -179,6 +178,10 @@ class _IndexViewState extends State<IndexView> {
 
   @override
   Widget build(BuildContext context) {
+    // SystemChrome.setPreferredOrientations([
+    //   DeviceOrientation.portraitUp,
+    // ]);
+
     return SingleChildScrollView(
       scrollDirection: Axis.vertical,
       child: Padding(

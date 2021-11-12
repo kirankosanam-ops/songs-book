@@ -22,7 +22,7 @@ class LyricTile extends StatelessWidget {
         Container(
           constraints: const BoxConstraints(minHeight: 70.0),
           width: screenSize.width * 0.96,
-          height: 70.0,
+          height: 80.0,
           padding: const EdgeInsets.symmetric(horizontal: 10.0),
           decoration: const BoxDecoration(
             boxShadow: [
@@ -53,8 +53,8 @@ class LyricTile extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Container(
-                    width: screenSize.width * 0.13,
-                    height: screenSize.height * 0.065,
+                    width: 55.0,
+                    height: 55.0,
                     decoration: const BoxDecoration(
                       color: Colors.pinkAccent,
                       shape: BoxShape.circle,

@@ -66,26 +66,26 @@ class _HomePageState extends State<HomePage> {
                   SizedBox(
                     width: screenSize.width * 0.08,
                   ),
-                  SongLanguageButton(
-                    screenSize: screenSize,
-                    language: 'తెలుగులోకి అనువాదం\nచెయ్యబడిన పాటలు ',
-                    fontFamily: 'Suvarnamu',
-                    fontSize: 30.0,
-                    pageName: '/telugu_hymns',
-                  ),
-                  SizedBox(
-                    width: screenSize.width * 0.08,
-                  ),
-                  SongLanguageButton(
-                    screenSize: screenSize,
-                    language: 'పల్లవులు',
-                    fontFamily: 'Suvarnamu',
-                    fontSize: 40.0,
-                    pageName: '/telugu_chorus',
-                  ),
-                  SizedBox(
-                    width: screenSize.width * 0.08,
-                  ),
+                  // SongLanguageButton(
+                  //   screenSize: screenSize,
+                  //   language: 'తెలుగులోకి అనువాదం\nచెయ్యబడిన పాటలు ',
+                  //   fontFamily: 'Suvarnamu',
+                  //   fontSize: 30.0,
+                  //   pageName: '/telugu_hymns',
+                  // ),
+                  // SizedBox(
+                  //   width: screenSize.width * 0.08,
+                  // ),
+                  // SongLanguageButton(
+                  //   screenSize: screenSize,
+                  //   language: 'పల్లవులు',
+                  //   fontFamily: 'Suvarnamu',
+                  //   fontSize: 40.0,
+                  //   pageName: '/telugu_chorus',
+                  // ),
+                  // SizedBox(
+                  //   width: screenSize.width * 0.08,
+                  // ),
                   SongLanguageButton(
                     screenSize: screenSize,
                     language: 'కీర్తనలు',

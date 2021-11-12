@@ -38,6 +38,7 @@ class _LyricsViewState extends State<LyricsView> {
   void resetFSize() {
     setState(() {
       fSize = 24;
+      _scaleFactor = 1.0;
     });
   }
 
@@ -175,6 +176,8 @@ class _LyricsViewState extends State<LyricsView> {
           });
         });
   }
+  double _scaleFactor = 1.0;
+  double _baseScaleFactor = 1.0;
 
   @override
   void dispose() {
@@ -200,6 +203,7 @@ class _LyricsViewState extends State<LyricsView> {
       SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
     }
 
+
     return Scaffold(
       backgroundColor: Colors.transparent,
       body: SafeArea(
@@ -222,17 +226,28 @@ class _LyricsViewState extends State<LyricsView> {
                   height: screenSize.height,
                   child: SingleChildScrollView(
                     scrollDirection: Axis.vertical,
-                    child: Text(
-                      // splitLyrics(),
-                      widget.lyrics,
-                      style: TextStyle(
-                          color: fColor,
-                          height: 1.5,
-                          fontSize: fSize,
-                          fontFamily:
-                              widget.lyrics[0].contains(RegExp(r'[A-Z]'))
-                                  ? 'ZenAntiqueSoft'
-                                  : 'Suvarnamu'),
+                    child: GestureDetector(
+                      onScaleStart: (details) {
+                        _baseScaleFactor = _scaleFactor;
+                      },
+                      onScaleUpdate: (details) {
+                        setState(() {
+                          _scaleFactor = _baseScaleFactor * details.scale;
+                        });
+                      },
+                      child: Text(
+                        // splitLyrics(),
+                        widget.lyrics,
+                        textScaleFactor: _scaleFactor,
+                        style: TextStyle(
+                            color: fColor,
+                            height: 1.5,
+                            fontSize: fSize,
+                            fontFamily:
+                                widget.lyrics[0].contains(RegExp(r'[A-Z]'))
+                                    ? 'ZenAntiqueSoft'
+                                    : 'Suvarnamu'),
+                      ),
                     ),
                   ),
                 ),

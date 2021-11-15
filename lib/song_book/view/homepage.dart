@@ -1,19 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:songs_book/widgets/background_gradient.dart';
-import 'package:sqflite/sqflite.dart';
-import 'package:songs_book/widgets/song_language_button.dart';
+import 'package:songs_book/song_book/widgets/song_language_button.dart';
 
 import '../constants.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+class SongsHomePage extends StatefulWidget {
+  const SongsHomePage({Key? key}) : super(key: key);
 
   @override
-  _HomePageState createState() => _HomePageState();
+  _SongsHomePageState createState() => _SongsHomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _SongsHomePageState extends State<SongsHomePage> {
   @override
   void initState() {
     super.initState();
@@ -21,21 +18,23 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-
     var screenSize = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: Colors.transparent,
       body: Stack(children: [
-        const BackgroundGradient(isLyrics: false),
+        Container(
+          // color: kBackgroundColor,
+          color: Color(0xff020114),
+        ),
         Column(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             SizedBox(
               width: screenSize.width,
-              height: screenSize.height * 0.55,
+              height: screenSize.height * 0.40,
               child: const Center(
                 child: Image(
-                  image: AssetImage('images/songs_book.png'),
+                  image: AssetImage('images/songs_book_logo.png'),
                   fit: BoxFit.cover,
                 ),
               ),
@@ -98,7 +97,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ],
               ),
-            )
+            ),
           ],
         ),
       ]),

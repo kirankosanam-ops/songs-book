@@ -4,7 +4,7 @@ import 'package:path/path.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:songs_book/constants.dart';
+import 'package:songs_book/song_book/constants.dart';
 import 'package:sqflite/sqflite.dart';
 
 import 'lyric_tile.dart';
@@ -182,9 +182,9 @@ class _IndexViewState extends State<IndexView> {
     //   DeviceOrientation.portraitUp,
     // ]);
 
-    return SingleChildScrollView(
+    return ListView(
       scrollDirection: Axis.vertical,
-      child: Padding(
+      children: [Padding(
         padding:
             EdgeInsets.symmetric(horizontal: widget.screenSize.width * 0.02),
         child: Column(
@@ -192,16 +192,27 @@ class _IndexViewState extends State<IndexView> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const SizedBox(
-              height: 50.0,
+              height: 20.0,
             ),
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 10.0),
               alignment: Alignment.centerLeft,
+              width: widget.screenSize.width * 0.96,
+              height: 55.0,
+              decoration: const BoxDecoration(
+                color: kListTileColor,
+                borderRadius: BorderRadius.all(
+                  Radius.circular(
+                    8.0,
+                  ),
+                ),
+              ),
               child: Row(
                 children: [
                   const Icon(
-                    Icons.search,
-                    color: Colors.deepPurple,
+                    Icons.search_rounded,
+                    color: kInLyricsTextColor,
+                    size: 24.0,
                   ),
                   SizedBox(
                     width: widget.screenSize.width * 0.72,
@@ -220,10 +231,17 @@ class _IndexViewState extends State<IndexView> {
                           }
                         });
                       },
-                      cursorColor: Colors.black,
+                      cursorColor: kInLyricsTextColor,
                       keyboardType: TextInputType.text,
                       textInputAction: TextInputAction.search,
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 20.0,
+                      ),
                       decoration: const InputDecoration(
+                          focusColor: kInLyricsTextColor,
+                          hoverColor: kInLyricsTextColor,
+                          fillColor: kInLyricsTextColor,
                           border: InputBorder.none,
                           focusedBorder: InputBorder.none,
                           enabledBorder: InputBorder.none,
@@ -231,20 +249,13 @@ class _IndexViewState extends State<IndexView> {
                           disabledBorder: InputBorder.none,
                           contentPadding:
                               EdgeInsets.symmetric(horizontal: 15.0),
-                          hintText: "Search for Song or Number"),
+                          hintText: "Search for Song or Number",
+                          hintStyle: TextStyle(
+                            color: Colors.white,
+                          )),
                     ),
                   ),
                 ],
-              ),
-              width: widget.screenSize.width * 0.96,
-              height: 55.0,
-              decoration: const BoxDecoration(
-                color: Colors.white60,
-                borderRadius: BorderRadius.all(
-                  Radius.circular(
-                    8.0,
-                  ),
-                ),
               ),
             ),
             const SizedBox(
@@ -257,7 +268,7 @@ class _IndexViewState extends State<IndexView> {
             )
           ],
         ),
-      ),
+      ),]
     );
   }
 }

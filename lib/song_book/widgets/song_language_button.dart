@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:songs_book/song_book/constants.dart';
 
 class SongLanguageButton extends StatelessWidget {
   const SongLanguageButton({
@@ -22,22 +24,34 @@ class SongLanguageButton extends StatelessWidget {
       onTap: () {
         print(pageName);
         Navigator.pushNamedAndRemoveUntil(
-            context, pageName, (route) =>  route.isCurrent && route.settings.name ==  pageName
-            ? false
-            : true);
+            context,
+            pageName,
+            (route) => route.isCurrent && route.settings.name == pageName
+                ? false
+                : true);
       },
       child: Container(
-        constraints: const BoxConstraints(
-          minHeight: 180.0
-        ),
+        constraints: const BoxConstraints(minHeight: 180.0),
         width: screenSize.width * 0.8,
         height: screenSize.height * 0.20,
         decoration: BoxDecoration(
-          color: const Color(0xFF7AABD1),
-          gradient: const LinearGradient(colors: [
-            Color(0XFF03BFCD),
-            Color(0XFF7C2BE8),
-          ]),
+          color: kInLyricsTextColor,
+          gradient: const LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [
+                // Color(0X00203FFF),
+                // Color(0XADEFD1FF),
+
+                Color(0X5F4B8BFF),
+                // Color(0XE69A8DFF),
+
+                // Color(0XFF03BFCD),
+                Color(0XFF7C2BE8),
+
+                // Colors.amber,
+                // Colors.yellowAccent,
+              ]),
           borderRadius: const BorderRadius.all(
             Radius.circular(8.0),
           ),
@@ -58,6 +72,7 @@ class SongLanguageButton extends StatelessWidget {
               color: Colors.white,
               fontSize: fontSize,
               fontFamily: fontFamily,
+              fontWeight: FontWeight.bold,
             ),
           ),
         ),

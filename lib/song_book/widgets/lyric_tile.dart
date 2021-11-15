@@ -1,6 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:songs_book/view/lyrics_view.dart';
+import 'package:songs_book/song_book/constants.dart';
+import 'package:songs_book/song_book/view/lyrics_view.dart';
 
 class LyricTile extends StatelessWidget {
   const LyricTile({
@@ -17,27 +19,34 @@ class LyricTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var screenSize = MediaQuery.of(context).size;
+    double tileHeight = songName.length > 31 ? 80.0 : 80.0;
     return Column(
       children: [
         Container(
           constraints: const BoxConstraints(minHeight: 70.0),
           width: screenSize.width * 0.96,
-          height: 80.0,
+          height: tileHeight,
           padding: const EdgeInsets.symmetric(horizontal: 10.0),
           decoration: const BoxDecoration(
-            boxShadow: [
-              BoxShadow(
-                  color: Colors.black26,
-                  offset: Offset(0, 3),
-                  spreadRadius: 3,
-                  blurRadius: 5)
-            ],
-            borderRadius: BorderRadius.all(Radius.circular(8.0)),
-            color: Color(0xFF31314F),
-          ),
+              boxShadow: [
+                BoxShadow(
+                    color: Colors.black26,
+                    offset: Offset(0, 3),
+                    spreadRadius: 3,
+                    blurRadius: 5)
+              ],
+              borderRadius: BorderRadius.all(Radius.circular(8.0)),
+              // color: kListTileColor,
+              color: kBackgroundColor,
+              // color: Color(0xff020114),
+    ),
           child: InkWell(
             onTap: () {
-              print("new Page" + songLyric);
+              // print("new Page \n" + songLyric);
+              // final emptyLines = '\n'.allMatches(songLyric).length;
+              // print(emptyLines);
+              print("\n\n\n\n"+songName.length.toString());
+
               Navigator.push(
                 context,
                 MaterialPageRoute(
@@ -56,14 +65,17 @@ class LyricTile extends StatelessWidget {
                     width: 55.0,
                     height: 55.0,
                     decoration: const BoxDecoration(
-                      color: Colors.pinkAccent,
+                      color: kInLyricsTextColor,
                       shape: BoxShape.circle,
                     ),
                     child: Center(
                       child: Text(
                         number.toString(),
                         style: const TextStyle(
-                            color: Colors.white, fontSize: 20.0),
+                            color: Colors.white,
+                            fontFamily: 'ZenAntiqueSoft',
+                            fontSize: 20.0,
+                            fontWeight: FontWeight.bold),
                       ),
                     ),
                   ),
@@ -71,6 +83,7 @@ class LyricTile extends StatelessWidget {
                 Expanded(
                   child: SizedBox(
                     width: screenSize.width * 0.72,
+
                     child: Text(
                       songName.toString(),
                       style: TextStyle(

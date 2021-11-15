@@ -25,20 +25,26 @@ class LyricsView extends StatefulWidget {
 class _LyricsViewState extends State<LyricsView> {
   static double fSize = 50.0;
   static Color fColor = Colors.white;
-  static Color tColor = kInLyricsTextColor;
+  static Color tColor = Colors.white;
+
+  // static Color tColor = kInLyricsTextColor;
   static TextAlign tAlignment = TextAlign.center;
   static Widget appearance = const DarkModeBackgroundGradient(isLyrics: true);
   static Color frostedGlass = const Color(0xff1C1E30).withOpacity(0.3);
 
   void decreaseFSize() {
     setState(() {
-      fSize -= 1;
+      if (fSize > 10) {
+        fSize -= 1;
+      }
     });
   }
 
   void increaseFSize() {
     setState(() {
-      fSize += 1;
+      if (fSize < 100) {
+        fSize += 1;
+      }
     });
   }
 
@@ -465,7 +471,8 @@ class _LyricsViewState extends State<LyricsView> {
                                   fontWeight: FontWeight.bold,
                                   height: 1.5,
                                   fontSize: 27,
-                                  fontFamily: widget.lyrics[0]
+                                  fontFamily: widget.lyrics
+                                          .substring(1, 5)
                                           .contains(RegExp(r'[A-Z]'))
                                       ? 'ZenAntiqueSoft'
                                       : 'Suvarnamu'),
@@ -480,10 +487,11 @@ class _LyricsViewState extends State<LyricsView> {
                                 color: fColor,
                                 height: 1.5,
                                 fontSize: fSize,
-                                fontFamily:
-                                    widget.lyrics[0].contains(RegExp(r'[A-Z]'))
-                                        ? 'ZenAntiqueSoft'
-                                        : 'Suvarnamu'),
+                                fontFamily: widget.lyrics
+                                        .substring(1, 5)
+                                        .contains(RegExp(r'[A-Z]'))
+                                    ? 'ZenAntiqueSoft'
+                                    : 'Suvarnamu'),
                           ),
                         ],
                       ),

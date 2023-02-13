@@ -74,7 +74,7 @@ class LyricTile extends StatelessWidget {
                         style: const TextStyle(
                             color: Colors.white,
                             fontFamily: 'ZenAntiqueSoft',
-                            fontSize: 20.0,
+                            fontSize: 23.0,
                             fontWeight: FontWeight.bold),
                       ),
                     ),

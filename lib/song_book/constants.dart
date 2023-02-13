@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 var db;
 
-const Color kInLyricsTextColor = Color(0xFFffb400);
+const Color kInLyricsTextColor = Color(0xFFff00fc);//0xFFffb400
 // const Color kBackgroundColor = Color(0xFF000000);
 const Color kBackgroundColor = Color(0xff1C1E30);
 const Color kHighlightColor = Color(0xFFff00fc);

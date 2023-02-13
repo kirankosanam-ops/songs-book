@@ -48,6 +48,13 @@ class _LyricsViewState extends State<LyricsView> {
     });
   }
 
+  void setFSize(double size) {
+    setState(() {
+      fSize = size*100;
+      //_scaleFactor = size;
+    });
+  }
+
   void resetFSize() {
     setState(() {
       fSize = 50.0;
@@ -199,7 +206,7 @@ class _LyricsViewState extends State<LyricsView> {
                                         ),
                                         SizedBox(
                                           child: Text(
-                                            " " + fSize.toString() + " ",
+                                            " " + fSize.round().toString() + " ",
                                             style: TextStyle(
                                                 color: tColor,
                                                 fontSize: 20.0,
@@ -452,10 +459,13 @@ class _LyricsViewState extends State<LyricsView> {
                     child: GestureDetector(
                       onScaleStart: (details) {
                         _baseScaleFactor = _scaleFactor;
+
                       },
                       onScaleUpdate: (details) {
                         setState(() {
                           _scaleFactor = _baseScaleFactor * details.scale;
+                          print(_scaleFactor*100);
+                          setFSize(_scaleFactor);
                         });
                       },
                       child: Column(

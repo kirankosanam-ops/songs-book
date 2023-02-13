@@ -59,8 +59,8 @@ class _SongsHomePageState extends State<SongsHomePage> {
                   SongLanguageButton(
                       screenSize: screenSize,
                       language: 'English Chorus',
-                      fontFamily: 'AlexBrush',
-                      fontSize: 40.0,
+                      fontFamily: 'ZenAntiqueSoft',
+                      fontSize: 25.0,
                       pageName: '/english_chorus'),
                   SizedBox(
                     width: screenSize.width * 0.08,

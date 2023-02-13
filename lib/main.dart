@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:songs_book/home.dart';
 import 'package:songs_book/song_book/view/english_chorus.dart';
 import 'package:songs_book/song_book/view/english_hymns.dart';
 import 'package:songs_book/song_book/view/homepage.dart';
@@ -17,12 +16,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return MaterialApp(
       title: 'Songs Book',
-      initialRoute: '/songs_homepage',
+      initialRoute: '/',
       routes: {
-        '/': (context) => const HomePage(),
-        '/songs_homepage': (context) => const SongsHomePage(),
+        '/': (context) => const SongsHomePage(),
+        // '/songs_homepage': (context) => const SongsHomePage(),
         '/english_hymns': (context) => const EnglishHymns(),
         '/english_chorus': (context) => const EnglishChorus(),
         '/telugu_hymns': (context) => const TeluguHymns(),
